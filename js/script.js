@@ -87,8 +87,7 @@ function generateTitleLinks(customSelector = ''){
     titleList.insertAdjacentHTML('beforeend', linkHTML);
 
     /* insert link into html variable */
-      html = html + linkHTML;
-
+     html = html + linkHTML;
       console.log(html);
     }
 
@@ -99,6 +98,7 @@ function generateTitleLinks(customSelector = ''){
 generateTitleLinks();
 
 const links = document.querySelectorAll('.titles a');
+console.log(links);
 
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
