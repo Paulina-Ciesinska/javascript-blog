@@ -3,7 +3,7 @@
 /* Variables */
 
 $color-light: #fff;
-$color-dark: #444;
+$color-dark: #000000;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -16,7 +16,7 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  background: linear-gradient(to top left, #f7cac9 0%, #95af6e 100%);
   font-family: $font-text;
   color: $color-dark;
   font-weight: 300;
@@ -27,6 +27,35 @@ body {
 .container {
   max-width: 1140px;
   margin: 0 auto;
+}
+
+.wrapper .sidebar {
+  background: #F7CAC9;
+  border-color: #F7CAC9;
+}
+
+.post-tags {
+  background-color: #F7CAC9;
+  border-color: #F7CAC9;
+}
+
+.wrapper .posts {
+  background-color: #ffffff;
+  border-color: #e84393;
+  border: 2px;
+}
+
+.post-tags {
+  background-color: #ffffff;
+}
+
+.wrapper .sidebar h2 {
+  color: #ffffff;
+  text-shadow: 3px 5px 10px #6F1E51;
+}
+
+.posts h3 {
+  color: #b041d8;
 }
 
 .section-title {
@@ -72,6 +101,9 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  color: #D980FA;
+  text-shadow: 3px 5px 10px #6F1E51;
+
 }
 
 /* Lists */
