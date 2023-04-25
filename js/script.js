@@ -120,7 +120,8 @@ function generateTags(){
     /* find tags wrapper */
 
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
-    console.log(tagsWrapper);  
+    console.log(tagsWrapper);
+
     /*nie skasowałam problematycznej zmiennej, a mniej więcej w tym momencie zniknęła mi znowu lewa kolumna strony*/
 
     /* make html variable with empty string */
@@ -160,7 +161,6 @@ function generateTags(){
 
     tagsWrapper.insertAdjacentHTML('beforeend', linkHTML);
 
-
     /* END LOOP: for every article: */
 
   }
@@ -168,45 +168,87 @@ function generateTags(){
 }
 
 generateTags();
+//******************************************************************************************************************************
+//TAG CLICK HANDLER
 
 function tagClickHandler(event){
+
   /* prevent default action for this event */
 
-
+  event.preventDefault();
 
   /* make new constant named "clickedElement" and give it the value of "this" */
 
-  
+  const clickedElement = this;
+  console.log('Link was clicked!');
 
   /* make a new constant "href" and read the attribute "href" of the clicked element */
 
+  const href = clickedElement.getAttribute('href');
+  console.log(href);
+
   /* make a new constant "tag" and extract tag from the "href" constant */
+
+  const tag = href.replace('#tag-', '');
+  console.log(tag);
 
   /* find all tag links with class active */
 
+  const activeTags = document.querySelectorAll('a.active[href^="#tag-"]');
+  console.log(activeTags);
+
   /* START LOOP: for each active tag link */
+
+  for(let activeTag of activeTags){
+    console.log(activeTag);
 
     /* remove class active */
 
-  /* END LOOP: for each active tag link */
+    activeTag.classList.remove('active');
+
+    /* END LOOP: for each active tag link */
+
+  }
 
   /* find all tag links with "href" attribute equal to the "href" constant */
 
+  const tagLinks = document.querySelectorAll('a[href="' + href + '"]'); //querySelectorAll czy getAttribute?
+  console.log(tagLinks);
+
   /* START LOOP: for each found tag link */
+
+  for(let tagLink of tagLinks){
+    console.log(tagLink);
 
     /* add class active */
 
-  /* END LOOP: for each found tag link */
+    tagLink.classList.add('active');
+
+    /* END LOOP: for each found tag link */
+
+  }
 
   /* execute function "generateTitleLinks" with article selector as argument */
+
+  generateTitleLinks('[data-tags~="' + tag + '"]');
+
 }
+
+//***********************************************************************************************************************************/
+//CLICK LISTENERS TO TAGS
 
 function addClickListenersToTags(){
   /* find all links to tags */
 
+
+
   /* START LOOP: for each link */
 
-    /* add tagClickHandler as event listener for that link */
+
+
+  /* add tagClickHandler as event listener for that link */
+
+
 
   /* END LOOP: for each link */
 }
