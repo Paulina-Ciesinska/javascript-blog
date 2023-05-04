@@ -15,6 +15,37 @@ $font-text: 'Source Sans Pro', sans-serif;
   box-sizing: border-box;
 }
 
+.tag-size-1 {
+  font-size: 15px;
+  color: #5758BB;
+  display: inline;
+}
+
+.tag-size-2 {
+  font-size: 25px;
+  color: #9980FA;
+  display: inline;
+}
+
+.tag-size-3 {
+  font-size: 35px;
+  color: #D980FA;
+  display: inline;
+}
+
+.tag-size-4 {
+  font-size: 45px;
+  color: #FDA7DF;
+  display: inline;
+}
+
+.tag-size-5 {
+  font-size: 55px;
+  color: #ffffff;
+  display: inline;
+  font-weight: bold;
+}
+
 body {
   background: linear-gradient(to top left, #f7cac9 0%, #95af6e 100%);
   font-family: $font-text;

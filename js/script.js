@@ -50,6 +50,8 @@ const optArticleSelector = '.post';
 const optTitleSelector = '.post-title';
 const optTitleListSelector = '.titles';
 const optArticleTagsSelector = '.post-tags .list';
+const optCloudClassCount = 5;
+const optCloudClassPrefix = 'tag-size-';
 
 function generateTitleLinks(customSelector = ''){
   console.log();
@@ -104,11 +106,45 @@ console.log(links);
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
 }
+//****************************************************FUNCTION CALCULATE TAGS PARAMS********************************************
+function calculateTagsParams(tags){
+  const params = {
+    max: 0,
+    min: 99999,
+  };
+  for(let tag in tags){
+    console.log(tag + ' is used ' + tags[tag] + ' times');
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    }
+    if(tags[tag] < params.min){
+      params.min = tags[tag];
+    }
+  }
+
+  return params;
+
+}
+
+//*****************************************************calculateTagClass***********************************************************
+
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  return optCloudClassPrefix + classNumber;
+}
 
 //*********************************************************************************************************************************/
 /*GENERATE TAGS */
 
+const optTagsListSelector = '.tags .list';
+
 function generateTags(){
+
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
 
   /* find all articles */
 
@@ -123,8 +159,6 @@ function generateTags(){
 
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
     console.log(tagsWrapper);
-
-    /*nie skasowałam problematycznej zmiennej, a mniej więcej w tym momencie zniknęła mi znowu lewa kolumna strony*/
 
     /* make html variable with empty string */
 
@@ -155,6 +189,17 @@ function generateTags(){
       html = html + linkHTML;
       console.log(html);
 
+      /* [NEW] check if this link is NOT already in allTags */
+
+      if(!allTags.hasOwnProperty(tag)){
+
+        /* [NEW] add tag to allTags object */
+
+        allTags[tag]= 1;
+      } else {
+        allTags[tag]++;
+      }
+
       /* END LOOP: for each tag */
 
     }
@@ -166,6 +211,33 @@ function generateTags(){
     /* END LOOP: for every article: */
 
   }
+
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector(optTagsListSelector);
+  console.log(tagList);
+
+  /* [NEW] create variable for all links HTML code */
+
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
+  let allTagsHTML = '';
+
+  /* [NEW] START LOOP: for each tag in allTags */
+
+  for(let tag in allTags){
+  /*[NEW] generate code of a link and add it to allTagsHTML */
+    //allTagsHTML += tag + ' (' + allTags[tag] + ') '; - wyświetla jedynie nazwę tagu oraz liczbę jego wystąpień */
+    //allTagsHTML += '<li><a href="#tag-' + tag + ' ('+ allTags[tag] + ')</a></li>'; - tak myślałam żeby zrobić aby wygenerować link html.
+    const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '"> ' + tag + '</a></li>';
+    allTagsHTML += tagLinkHTML;
+
+    /*[NEW] END LOOP: for each tag in allTags */
+
+  }
+
+  /*[NEW] add html from allTagsHTML to tagList */
+
+  tagList.innerHTML = allTagsHTML;
 
 }
 
@@ -392,4 +464,3 @@ function addClickListenersToAuthors(){
 
 addClickListenersToAuthors();
 
-//**************************************************************************************************
