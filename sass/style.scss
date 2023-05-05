@@ -15,36 +15,64 @@ $font-text: 'Source Sans Pro', sans-serif;
   box-sizing: border-box;
 }
 
+.tags a {
+  text-decoration: none;
+}
+
+.post-author li {
+  list-style-type: none;
+}
+
+.post-author a {
+  text-decoration: none;
+  color: #6F1E51;
+}
+
 .tag-size-1 {
-  font-size: 15px;
-  color: #5758BB;
-  display: inline;
+  font-size: 12px;
+  color: #6F1E51;
 }
 
 .tag-size-2 {
-  font-size: 25px;
-  color: #9980FA;
-  display: inline;
+  font-size: 14px;
+  color: #833471;
 }
 
 .tag-size-3 {
-  font-size: 35px;
-  color: #D980FA;
-  display: inline;
+  font-size: 16px;
+  color: #B53471;
 }
 
 .tag-size-4 {
-  font-size: 45px;
-  color: #FDA7DF;
-  display: inline;
+  font-size: 18px;
+  color: #ED4C67;
 }
 
 .tag-size-5 {
-  font-size: 55px;
-  color: #ffffff;
-  display: inline;
-  font-weight: bold;
+  font-size: 20px;
+  color: #f5f6fa;
 }
+
+ .tags li {
+  display: inline;
+ }
+
+ .authors span {
+  color: #ffffff;
+ }
+
+ .authors a {
+  text-decoration: none;
+ }
+
+ .titles span {
+  color: #ffffff;
+  font-weight: bold;
+ }
+
+ .titles a {
+  text-decoration: none;
+ }
 
 body {
   background: linear-gradient(to top left, #f7cac9 0%, #95af6e 100%);
